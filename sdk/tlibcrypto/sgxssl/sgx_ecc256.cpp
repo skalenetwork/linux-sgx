@@ -63,6 +63,25 @@ sgx_status_t sgx_ecc256_open_context(sgx_ecc_state_handle_t* p_ecc_handle)
 	return retval;
 }
 
+
+sgx_status_t sgx_ecc256_open_context_k(sgx_ecc_state_handle_t* p_ecc_handle)
+{
+    if (p_ecc_handle == NULL) {
+        return SGX_ERROR_INVALID_PARAMETER;
+    }
+
+    sgx_status_t retval = SGX_SUCCESS;
+
+    /* construct a curve p-256 */
+    EC_GROUP* ec_group = EC_GROUP_new_by_curve_name(NID_secp256k1);
+    if (NULL == ec_group) {
+        retval = SGX_ERROR_UNEXPECTED;
+    } else {
+        *p_ecc_handle = (void*)ec_group;
+    }
+    return retval;
+}
+
 /* Cleans up ecc context
 * Parameters:
 *   Return: sgx_status_t  - SGX_SUCCESS or failure as defined sgx_error.h

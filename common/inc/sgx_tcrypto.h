@@ -539,6 +539,8 @@ extern "C" {
     */
     sgx_status_t SGXAPI sgx_ecc256_open_context(sgx_ecc_state_handle_t* p_ecc_handle);
 
+    sgx_status_t SGXAPI sgx_ecc256_open_context_k(sgx_ecc_state_handle_t* p_ecc_handle);
+
    /** Cleans up ecc context.
     *      Return: If context pointer is NULL, SGX_ERROR_INVALID_PARAMETER is returned.
     * Parameters:
